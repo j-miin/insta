@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>User Database</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Userame</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th scope="row">{{user_one.id}}</th>
+      <td>{{user_one.username}}</td>
+      <td>{{user_one.email}}</td>
+      <td>{{user_one.password}}</td>
+      <td><form action="{{ url_for('update_or_delete', id=user.id) }}" method="POST">
+      <input type="hidden" name="_method" value="DELETE" />
+      <button type="submit" class="btn btn-primary">DELETE</button>
+      </form>
+      </td>       
+    </tr>   
+  </tbody>
+ 
+</table>
+  
+{% endblock %}
