@@ -1,11 +1,21 @@
-from flask_wtf import FlaskForm
-from wtforms import TextField, StringField, SubmitField, PasswordField
-from werkzeug.security import check_password_hash
+from flask_wtf import Form
+from wtforms import TextField, StringField, SubmitField, PasswordField, BooleanField, validators
 
-class RegistrationForm(FlaskForm):
+class RegistrationForm(Form):
 	username = StringField('username')
 	email = StringField('email')
 	password = PasswordField('password')
 	submit = SubmitField("Sign In")
-	
+
+class LoginForm(Form):
+	username = StringField('username', validators=[validators.required()])	
+	password = PasswordField('password', validators=[validators.required()])
+	submit = SubmitField("Sign In")
+	remember = BooleanField('remember_me')
+
+class EditForm(Form):
+	username = StringField('username')
+	email = StringField('email')
+	password = PasswordField('password')
+	submit = SubmitField("Submit")
 

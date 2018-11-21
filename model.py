@@ -1,16 +1,11 @@
 import re
 from sqlalchemy.orm import validates
-from database import db, login_manager
+from database import db
 from helpers import validation_preparation
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-@login_manager.user_loader
-def load_user(user_id):
-    try:
-        return User.query.get(user_id)
-    except:
-        return None
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,9 +14,10 @@ class User(db.Model, UserMixin):
     password = db.Column(db.Text)
 
     def __init__(self,username,email,password):
+        self.validation_errors = []
         self.username = username
         self.email = email       
-        self.password = password
+        self.password = self.set_password(password)
 
     def __repr__(self):
         return f"User {self.username} is registered."
@@ -58,15 +54,18 @@ class User(db.Model, UserMixin):
 
         return email
 
-    @validation_preparation
-    def set_password(self, key, password):
+    
+    def set_password(self, password):
         if not password:
             self.validation_errors.append('Password not provided')
 
         if len(password) < 8 or len(password) > 50:
             self.validation_errors.append('Password must be between 8 and 50 characters')
 
-        self.password_hash = generate_password_hash(password)
+        return generate_password_hash(password)
 
-        return password_hash
+    def check_password(self, password):
+        if not password:
+            self.validation_errors.append('Password isn''t correct')
 
+        return check_password_hash(self.password, password)  

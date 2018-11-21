@@ -1,19 +1,23 @@
-<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-  <meta name="viewport" content="idth=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
   	
-	<title>{% block title %}Instagram Homepage{% endblock %}</title>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-</head>
-
-<body>
+{% block title %}
+<title>Instagram Homepage</title>
+{% endblock %}
+<!--  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head> -->
+{% block content %}
+<!-- <body> -->
     <div class="container">      
-      {% block content %}
       
-      {% endblock %}
+      
+      
     </div>
-</body>
-</html>
+{% endblock %}
+<!-- </body>
+</html> -->

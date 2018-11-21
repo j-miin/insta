@@ -2,7 +2,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}
-<title>Sign Up</title>
+<title>Login</title>
 {% endblock %}
 
 {% block content %}
@@ -12,18 +12,18 @@
 		{{error}}
 		{% endfor %}
 	</div>
-<form action="{{ url_for('create') }}" method="POST">
-	{{ form.csrf_token }}	
+<form action="{{ url_for('index') }}" method="POST">
+	{{ form.csrf_token }}
 	<div>		
 		{{wtf.form_field(form.username)}}		
 	</div>
 	<div>		
 		{{wtf.form_field(form.password)}}
 	</div>
-	<div>			
-		{{wtf.form_field(form.email)}}
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>	
+	<input type="radio" name="remember_me">Remember me	
+	<button type="submit" class="btn btn-primary" name="Sign In">Login</button>
+
 </form>
 </div>
+
 {% endblock %}
